@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro vue Grupo 40</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="container mt-4">
+
+
+    <style>
+        .claseh1 {
+            color: brown;
+        }
+    </style>
+
+    <div id="app">
+
+        <header>
+            <h1 :class='tituloh1' :id="mainTitle">
+                {{titulo}} {{grupo}}
+            </h1>
+
+            <h2>Condicionales</h2>
+            <p v-if="cantidad > 7">
+                Tengo stock
+            </p>
+            <p v-else-if="cantidad <= 7 && cantidad > 0 ">
+                tengo pocos unidades
+            </p>
+            <p v-else>
+                Me agoté!!
+            </p>
+
+            <p v-show="visible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis quod eaque adipisci
+                eligendi dolorem debitis aliquid, dolore quidem nihil odio nobis sunt quam distinctio ipsum reiciendis
+                maxime accusantium quas nulla.</p>
+
+            <h2>Bucles</h2>
+
+            <ol>
+                <li v-for="(actividad, index) in actividades" v-bind:key="index">
+                    {{actividad.text}}
+                    <span v-if="actividad.estado">
+                        - Hecho
+                    </span>
+                    <span v-else>
+                        - Pendiente
+                    </span>
+                </li>
+            </ol>
+
+            <h2>Interacciones</h2>
+
+            <div>
+                <input v-model="textoBuscar" type="text">
+
+                <button class="btn btn-warning" type="button" v-on:click="buscarApi">Buscar Película</button>
+            </div>
+
+            <div v-for="(pelicula, index) in peliculas" :key="index" class="row">
+                <div class="col-12 col-md-4">
+                    <img :src="pelicula.Poster" alt="">
+                </div>
+                <div class="col-12 col-md-8">
+                    <h3>
+                        {{pelicula.Title}}
+                    </h3>
+
+                    <p>
+                        {{pelicula.Plot}}
+                    </p>
+                    <a :href="'https://www.imdb.com/title/' + pelicula.imdbID">
+                        Sitio oficial de IMDB
+                    </a>
+                </div>
+
+            </div>
+        </header>
+    </div>
+
+    <!-- versión de desarrollo, incluye advertencias de ayuda en la consola -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./app.js"></script>
+</body>
+
+</html>
